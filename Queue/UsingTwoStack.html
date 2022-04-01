@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <title>A queue using two stack</title>
+    <script>
+
+        //Two stacks declared in array form
+        let stack1 = [], stack2 = [];
+
+        //Method to implement enqueue operation
+        const enQueue = (element) => {
+
+            // If dequeue was called before actual enquque operation
+            if (stack2.length > 0) {
+                let len = stack2.length;
+                for (let i = 0; i < len; i++) {
+                    let p = stack2.pop();
+                    stack1.push(p);
+                };
+            };
+            stack1.push(element);
+            document.write("Elements before dequeue: ", stack1 + "<br/>");
+        };
+
+        //Method to implement dequeue operation........
+        const qeQueue = () => {
+
+            // If dequeue was called consecutively, all
+            // the elements would be in stack2
+            if (stack2.length > 0) {
+                document.write("Element after dequeue: " + stack2.pop() + "<br/>");
+            }
+
+            // If enqueue waas called right before
+            // this dequeue, stack2 is empty
+            else if (stack2.length === 0) {
+                if (stack1.length === 0) {
+                    // If athe first operation as
+                    // dequeue itself
+                    document.write("Queue is empty <br/>")
+                }
+                else if (stack1.length === 1) {
+                    //If a single operation as
+                    // enqueue was performed
+                    document.write(stack1.pop() + "<br />");
+                } else if (stack1.length > 0) {
+                    let len = stack1.length;
+                    for (let i = 0; i < len; i++) {
+                        let p = stack1.pop();
+                        stack2.push(p);
+                    }
+                    document.write("Element after dequeue: " + stack2.pop() + "<br/>");
+                }
+            }
+        }
+
+        enQueue("a");
+        enQueue("b");
+        enQueue("c");
+        qeQueue();
+        enQueue("d");
+        enQueue("e");
+        qeQueue();
+        qeQueue();
+        qeQueue();
+        enQueue("f");
+    </script>
+</head>
+
+</html>

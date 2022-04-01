@@ -3,7 +3,7 @@
 <head>
     <title>Reverse A Queue</title>
     <script>
-        let queue = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+        let queue = [];
 
         //Utility function to print queue
         const print = () => {
@@ -11,6 +11,7 @@
                 document.write(queue[0], ", ");
                 queue.shift();
             }
+            document.write("<br />");
         }
 
         // Function to reverse the queue
@@ -24,11 +25,12 @@
             while (stack.length > 0) {
                 queue.push(stack.pop());
             }
-
             print();
-
         }
 
+        queue = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+        reverseQueue();
+        queue = [1, 2, 3, 4, 5];
         reverseQueue();
     </script>
 </head>
