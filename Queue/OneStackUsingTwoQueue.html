@@ -1,0 +1,80 @@
+<html>
+
+<head>
+    <title>One stack using two queue</title>
+    <script>
+
+        //Two stacks declared in array form
+        let queue1 = [], queue2 = [], stack = [];
+
+        //Method to implement enqueue operation
+        const enQueue = (element) => {
+            debugger;
+            // If queue1 is empty, then enqueue element to queue1
+            if (queue1.length === 0) {
+                queue1.push(element);
+                return;
+            }
+
+            // If dequeue was called before actual enquque operation
+            else if (queue1.length > 0) {
+                let len = queue1.length;
+                for (let i = 0; i < len; i++) {
+                    let p = queue1.pop();
+                    queue2.push(p);
+                };
+            };
+            queue1.push(element);
+
+            // Enqueue all queue2 element to queue1
+            if (queue2.length > 0) {
+                let len = queue2.length;
+                for (let i = 0; i < len; i++) {
+                    let p = queue2.pop();
+                    queue1.push(p);
+                };
+            };
+
+            document.write("Elements before dequeue: ", queue1 + "<br/>");
+        };
+
+        //Method to implement dequeue operation........
+        const deQueue = () => {
+
+            // If dequeue was called consecutively, all
+            // the elements would be in stack2
+            if (queue2.length > 0) {
+                document.write("Element after dequeue: " + queue2.pop() + "<br/>");
+            }
+
+            // If enqueue waas called right before
+            // this dequeue, stack2 is empty
+            else if (queue2.length === 0) {
+                if (
+                    queue1.length === 0) {
+                    // If athe first operation as
+                    // dequeue itself
+                    document.write("Queue is empty <br/>")
+                }
+                else {
+                    //If a single operation as
+                    // enqueue was performed
+                    document.write(queue1.pop() + "<br />");
+                }
+            }
+        }
+
+        enQueue("a");
+        enQueue("b");
+        enQueue("c");
+        deQueue();
+        enQueue("d");
+        enQueue("e");
+        deQueue();
+        deQueue();
+        deQueue();
+        enQueue("f");
+    </script>
+</head>
+
+</html>
