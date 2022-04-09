@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <title>Pair Wise Consecutive</title>
+    <script>
+        const pairWiseConsecutive = (s) => {
+            let aux = [];  // make a stack array
+            while (s.length > 0) {
+                aux.push(s.pop());
+            };
+
+            if (aux.length > 0) {
+                for (let i = 0; i < aux.length; i++) {
+                    let x = aux[aux.length - 1];
+                    let y = aux[aux.length - 2];
+                    if (Math.abs(x - y) === 1) {
+                        s.push(aux.pop());
+                        s.push(aux.pop());
+                        return true;
+                    };
+                }
+            }
+            return false;
+        };
+
+        let stack = [4, 5, -2, -3, 11, 10, 5, 6, 20];
+        console.log(pairWiseConsecutive(stack)); // 4-5 = -1 the oputput will be true
+        stack = [4, 6, 6, 7, 4, 3];
+        console.log(pairWiseConsecutive(stack)); // 4-6 = -2 the ouput will be false
+    </script>
+</head>
+
+</html>

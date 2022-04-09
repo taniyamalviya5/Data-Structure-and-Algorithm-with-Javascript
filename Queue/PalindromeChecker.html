@@ -14,8 +14,30 @@
         addRear(8, 4);
         console.log('Remove Rear: ', removeRear());
         console.log('Remove Front: ', removeFront());
+        removeFront();
+        removeFront();
+        removeFront();
+        removeFront();
 
+        // const str = "lsjhfhfkdh";
+        const str = "rear";
 
+        for (let i = 0; i < str.length; i++) {
+            addRear(str[i]);
+        };
+
+        let stillEqual = true;
+
+        while (size() > 1 && stillEqual) {
+            let first = removeFront();
+            let last = removeRear();
+
+            if (first != last) {
+                stillEqual = false;
+            };
+        };
+
+        console.log('Palindrome Checker: ', stillEqual);
     </script>
 </head>
 
