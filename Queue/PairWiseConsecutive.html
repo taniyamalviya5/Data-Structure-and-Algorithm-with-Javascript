@@ -3,30 +3,39 @@
 <head>
     <title>Pair Wise Consecutive</title>
     <script>
-        const pairWiseConsecutive = (s) => {
+        const pairWiseConsecutive = (q) => {
             let aux = [];  // make a stack array
-            while (s.length > 0) {
-                aux.push(s.pop());
+            while (q.length > 0) {
+                aux.push(q.shift());
             };
 
-            if (aux.length > 0) {
-                for (let i = 0; i < aux.length; i++) {
-                    let x = aux[aux.length - 1];
-                    let y = aux[aux.length - 2];
-                    if (Math.abs(x - y) === 1) {
-                        s.push(aux.pop());
-                        s.push(aux.pop());
-                        return true;
-                    };
+            let aux2 = [];
+            while (aux.length > 0) {
+                aux2.push(aux.pop());
+            };
+
+            let result = true;
+
+            if (aux2.length > 0) {
+                for (let i = 0; i < aux2.length; i++) {
+                    const x = aux2.pop();
+                    const y = aux2.pop();
+                    if (Math.abs(x - y) !== 1) result = false;
+                    q.push(x);
+                    q.push(y);
                 }
             }
-            return false;
+            return result;
         };
 
         let stack = [4, 5, -2, -3, 11, 10, 5, 6, 20];
         console.log(pairWiseConsecutive(stack)); // 4-5 = -1 the oputput will be true
         stack = [4, 6, 6, 7, 4, 3];
         console.log(pairWiseConsecutive(stack)); // 4-6 = -2 the ouput will be false
+        stack = [1, 2, 5, 6, 9, 10];
+        console.log(pairWiseConsecutive(stack));
+        stack = [2, 3, 9, 11, 8, 7];
+        console.log(pairWiseConsecutive(stack));
     </script>
 </head>
 
