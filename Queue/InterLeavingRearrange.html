@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <title>Rearrange the elements by Interleaving</title>
+    <script>
+        const interLeavingQueue = (q) => {
+            // If queue is not even than return
+            if ((q.length % 2) !== 0) {
+                return "Queue is not even.";
+            };
+
+            let stack = [], halfSize = q.length / 2;
+
+
+            for (let i = 0; i < halfSize; i++) {
+                stack.push(q.shift());
+            };
+
+            while (stack.length > 0) {
+                q.push(stack.pop());
+            };
+
+            for (let i = 0; i < halfSize; i++) {
+                q.push(q.shift());
+            };
+
+            for (let i = 0; i < halfSize; i++) {
+                stack.push(q.shift());
+            };
+
+            while (stack.length > 0) {
+                q.push(stack.pop());
+                q.push(q.shift());
+            };
+
+            return q;
+        };
+
+        let queue = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+        document.write('Result: ', interLeavingQueue(queue) + '<br />');
+    </script>
+</head>
+
+</html>
