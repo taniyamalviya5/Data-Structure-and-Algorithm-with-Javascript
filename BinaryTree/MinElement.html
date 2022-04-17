@@ -1,10 +1,10 @@
 <html>
 
 <head>
-    <title>Maximmum element in Binary Tree</title>
+    <title>Minimum element in Binary Tree</title>
     <script>
 
-        // Javascript code to Find maximum
+        // Javascript code to Find minimum
         // in Binary Tree
 
         let root;
@@ -17,20 +17,20 @@
             };
         };
 
-        const findMax = (rootData) => {
+        const findMin = (rootData) => {
             if (!rootData)
-                return Number.MIN_VALUE;
+                return Number.MAX_VALUE;
 
             let root_val = rootData.data;
-            let left = findMax(rootData.left);
-            let right = findMax(rootData.right);
+            let left = findMin(rootData.left);
+            let right = findMin(rootData.right);
 
             // Find the largest of the three values
 
-            if (left > root_val)
+            if (left < root_val)
                 root_val = left;
 
-            if (right > root_val)
+            if (right < root_val)
                 root_val = right;
 
             return root_val;
@@ -46,7 +46,7 @@
         root.right.right.left = new Node(4);
 
         // Function call
-        document.write("Maximum element is " + findMax(root));
+        document.write("Minimum element is " + findMin(root));
 
     </script>
 
