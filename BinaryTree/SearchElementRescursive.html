@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <title>Minimum element in Binary Tree</title>
+    <script>
+
+        // Javascript code to Find minimum
+        // in Binary Tree
+
+        let root;
+
+        class Node {
+            constructor(data) {
+                this.left = null;
+                this.right = null;
+                this.data = data;
+            };
+        };
+
+        const isNodeExist = (rootData, key) => {
+            let tmp;
+
+            // Base case === empty tree, in that case, the data is not found so return false
+
+            if (rootData === null) return 0;
+
+            // see if found here
+            if (key === rootData.data) return 1;
+
+            // otherwise recur down the correct subtree
+            tmp = isNodeExist(rootData.left, key);
+
+            if (tmp !== 0) {
+                return tmp;
+            } else {
+                return isNodeExist(rootData.right, key);
+            }
+
+            return 0;
+        };
+
+        root = new Node(2);
+        root.left = new Node(7);
+        root.right = new Node(5);
+        root.left.right = new Node(6);
+        root.left.right.left = new Node(1);
+        root.left.right.right = new Node(11);
+        root.right.right = new Node(9);
+        root.right.right.left = new Node(4);
+
+        // Function call
+        document.write("Element is found:  " + isNodeExist(root, 11));
+
+    </script>
+
+</head>
+
+</html>
